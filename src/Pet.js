@@ -30,4 +30,4 @@ export default function Pet({ name, animal, breed }) {
 			<h3>{breed}</h3>
 		</div>
 	);
-};
+}
