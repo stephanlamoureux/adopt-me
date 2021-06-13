@@ -3,13 +3,13 @@ import { useState } from 'react';
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 const SearchParams = () => {
-	// const locationTuple = useState("Boston, MA");
+	// const locationTuple = useState("");
 	// const location = locationTuple[0];
 	// const setLocation = locationTuple[1];
 
 	// ****** do not put hooks inside if statements or loops! ******
 	const [location, setLocation] = useState(''); // <--- same as above, but w/ destructuring
-	const [animal, setAnimal] = useState('d');
+	const [animal, setAnimal] = useState('');
 	const [breed, setBreed] = useState('');
 	const breeds = [];
 
