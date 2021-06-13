@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Pet from "./Pet";
+import Pet from './Pet';
 
 const App = () => {
 	return React.createElement('div', {}, [
@@ -15,7 +15,11 @@ const App = () => {
 			animal: 'Bird',
 			breed: 'Cockatiel',
 		}),
-		React.createElement(Pet, { name: 'Doink', animal: 'Cat', breed: 'Mix' }),
+		React.createElement(Pet, {
+			name: 'Doink',
+			animal: 'Cat',
+			breed: 'Mix',
+		}),
 	]);
 };
 
