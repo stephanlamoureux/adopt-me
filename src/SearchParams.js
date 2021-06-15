@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Pet from './Pet';
 
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 const SearchParams = () => {
-	// const locationTuple = useState("");
+	// const locationTuple = useState(" ");
 	// const location = locationTuple[0];
 	// const setLocation = locationTuple[1];
 
@@ -11,7 +12,21 @@ const SearchParams = () => {
 	const [location, setLocation] = useState(''); // <--- same as above, but w/ destructuring
 	const [animal, setAnimal] = useState('');
 	const [breed, setBreed] = useState('');
+	const [pets, setPets] = useState([]);
 	const breeds = [];
+
+	useEffect(() => {
+		requestPets();
+		// [] will stop the api from being called infinitely. the brackets are where you would put when you want it to re-render.
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	async function requestPets() {
+		const res = await fetch(
+			`http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+		);
+		const json = await res.json();
+
+		setPets(json.pets);
+	}
 
 	return (
 		<div className="search-params">
@@ -44,7 +59,6 @@ const SearchParams = () => {
 				<label htmlFor="breed">
 					Breed
 					<select
-						disabled={!breeds.length}
 						id="breed"
 						value={breed}
 						onChange={(event) => setBreed(event.target.value)}
@@ -60,6 +74,14 @@ const SearchParams = () => {
 				</label>
 				<button>Submit</button>
 			</form>
+			{pets.map((pet) => (
+				<Pet
+					name={pet.name}
+					animal={pet.animal}
+					breed={pet.breed}
+					key={pet.id}
+				/>
+			))}
 		</div>
 	);
 };
