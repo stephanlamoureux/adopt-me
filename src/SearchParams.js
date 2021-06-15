@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Pet from './Pet';
+import useBreedList from './useBreedList';
 
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -13,7 +14,7 @@ const SearchParams = () => {
 	const [animal, setAnimal] = useState('');
 	const [breed, setBreed] = useState('');
 	const [pets, setPets] = useState([]);
-	const breeds = [];
+	const [breeds] = useBreedList(animal);
 
 	useEffect(() => {
 		requestPets();
@@ -30,7 +31,12 @@ const SearchParams = () => {
 
 	return (
 		<div className="search-params">
-			<form>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					requestPets();
+				}}
+			>
 				<label htmlFor="location">
 					Location
 					<input
@@ -87,7 +93,7 @@ const SearchParams = () => {
 };
 
 /*
-with ANIMALS.map, If you use parenthesis instead of {} it will return everything side of them.
+with ANIMALS.map, If you use () instead of {} it will return everything side of them.
 
 We use the setLocation function in the onChange attribute of the input.
 Every time the input is typed into, it's going to call that function which calls setLocation with what has been typed into the input.
