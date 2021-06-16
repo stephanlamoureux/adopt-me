@@ -1,6 +1,7 @@
 // import React from 'react'; / <---- don't need to import anymore, babel detects jsx and does it for you.
 import { render } from 'react-dom';
 import SearchParams from './SearchParams';
+import { StrictMode } from 'react';
 
 // const App = () => {
 // 	return React.createElement('div', {}, [
@@ -36,4 +37,9 @@ export default function App() {
 
 // ReactDOM.render(React.createElement(App), document.getElementById('root')); <--- old way with createElement
 
-render(<App />, document.getElementById('root'));
+render(
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	document.getElementById('root')
+);
