@@ -1,4 +1,4 @@
-// import React from 'react';
+// import React from 'react'; <-- don't need this anymore because of babel
 
 // export default function Pet({ name, animal, breed }) {
 // 	return React.createElement('div', {}, [
@@ -22,12 +22,35 @@
 
 // ** same as above but with destructuring **
 
-export default function Pet({ name, animal, breed }) {
+// export default function Pet({ name, animal, breed }) {
+// 	return (
+// 		<div>
+// 			<h2>{name}</h2>
+// 			<h3>{animal}</h3>
+// 			<h3>{breed}</h3>
+// 		</div>
+// 	);
+// }
+
+const Pet = (props) => {
+	const { name, animal, breed, images, location, id } = props;
+
+	let hero = 'http://pets-images.dev-apis.com/pets/none.jpg';
+	if (images.length) {
+		hero = images[0];
+	}
+
 	return (
-		<div>
-			<h2>{name}</h2>
-			<h3>{animal}</h3>
-			<h3>{breed}</h3>
-		</div>
+		<a href={`/details/${id}`} className="pet">
+			<div className="image-container">
+				<img src={hero} alt={name} />
+			</div>
+			<div className="info">
+				<h1>{name}</h1>
+				<h2>{`${animal} — ${breed} — ${location}`}</h2>
+			</div>
+		</a>
 	);
-}
+};
+
+export default Pet;
