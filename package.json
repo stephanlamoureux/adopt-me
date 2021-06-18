@@ -28,8 +28,10 @@
 	],
 	"dependencies": {
 		"e": "^0.2.0",
+		"rea": "^0.0.1",
 		"reac": "*",
 		"react": "^17.0.1",
-		"react-dom": "^17.0.1"
+		"react-dom": "^17.0.1",
+		"react-router-dom": "^5.2.0"
 	}
 }
